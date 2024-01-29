@@ -1,0 +1,7 @@
+beautifulsoup4==4.11.1
+img2pdf==0.5.1
+progress==1.6
+requests==2.31.0
+selenium==4.17.2
+urllib3==1.26.11
+wget==3.2
