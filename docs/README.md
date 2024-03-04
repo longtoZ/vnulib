@@ -14,7 +14,7 @@
 + Tuỳ chọn sử dụng đa luồng (tốn CPU) `fast mode`.
 + Tuỳ chọn gộp các mục thành 1 file `merge sections`.
 + Tuỳ chọn xoá các file ảnh khi xuất xong pdf (nếu cần) `clean up`.
-+ Đợi script chạy và hoàn thành.
++ Đợi script chạy và hoàn thành. Các file ảnh sẽ được lưu tại `imgs/` và các file pdf sẽ được lưu tại `pdfs/`
 
 ## 2. Bugs
 

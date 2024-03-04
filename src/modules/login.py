@@ -1,3 +1,4 @@
+import os
 import json
 
 from .browser import Browser
@@ -13,12 +14,25 @@ class Login:
         self.browser = browser
         self.driver = self.browser.browserSetup()
         self.utils = Utils(self.driver)
+        self.username = ""
+        self.password = ""
 
-        f = open("authorization.json", "r")
-        data = json.load(f)
-        self.username = data["username"]
-        self.password = data["password"]
-        f.close()
+    def checkAuthorizationFile(self):
+        if not os.path.exists("authorization.json"):
+            print('here')
+            with open("authorization.json", "w") as f:
+                json.dump({"username": "", "password": ""}, f)
+                f.close()
+            
+            print(f"{YELLOW}[+] authorization.json not found, created one. Please provide your credentials before starting the program.{RESET}")
+            return False
+        else:
+            with open("authorization.json", "r") as f:
+                data = json.load(f)
+                self.username = data["username"]
+                self.password = data["password"]
+                f.close()
+            return True
 
     def missingCredentials(self):
         if self.username == "" or self.password == "":
@@ -26,11 +40,15 @@ class Login:
         return False
 
     def login(self) -> WebDriver:
-        if self.missingCredentials():
-            print(
-                f"{RED}[!] Please provide your credentials in authorization.json file.{RESET}"
-            )
+        if self.checkAuthorizationFile():
+            if self.missingCredentials():
+                print(
+                    f"{RED}[!] Please provide your credentials before starting the program.{RESET}"
+                )
+                raise SystemExit
+        else:
             raise SystemExit
+            
 
         print(f"Logging in...")
         self.driver.get("https://ir.vnulib.edu.vn/login/oa/dologin.jsp?RedirectURL=/")

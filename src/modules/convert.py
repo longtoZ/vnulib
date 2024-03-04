@@ -1,8 +1,11 @@
 import os
+import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import img2pdf
 import PyPDF2
 from ..CONSTANTS import *
+
+logging.getLogger('img2pdf').setLevel(logging.CRITICAL)
 
 class Convert:
     def __init__(self, departure: str, destination: str, title: str, fast: bool, merge: bool):
@@ -23,13 +26,14 @@ class Convert:
 
         imgs.sort(key=lambda image: int(image.split("page")[1].split(".")[0]))
 
+        print(f"[+] Converting {self.destination}{self.title}_section{order}.pdf...")
+        
         with open(f"{self.destination}{self.title}_section{order}.pdf", "wb") as f:
             f.write(img2pdf.convert(imgs))
             f.close()
 
 
     def convert(self):
-        print(f"{GREEN}[+] Converting...{RESET}")
 
         # If fast mode is enabled, use multithreading
         if (self.fast):
@@ -69,4 +73,4 @@ class Convert:
             for pdf in pdfs:
                 os.remove(f"{self.destination}{pdf}")
 
-        print(f"{GREEN}[+] Converted successfully.{RESET}")
+        print(f"{GREEN}[+] Converted successfully. Saved in {os.path.abspath(self.destination)}{RESET}")

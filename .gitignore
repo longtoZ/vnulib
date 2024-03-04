@@ -1,4 +1,6 @@
 myenv/
 test/
+imgs/
+pdfs/
 
 chromedriver.exe

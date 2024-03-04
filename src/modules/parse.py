@@ -1,5 +1,5 @@
+import logging
 from ..CONSTANTS import *
-
 
 class Parse:
     def __init__(self):

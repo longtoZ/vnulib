@@ -5,7 +5,7 @@ import math
 from tqdm import tqdm
 from ..CONSTANTS import *
 
-class MultiThreadingDownload:
+class Download:
     def __init__(self, sections: list, departure: str, destination: str, fast: bool):
         self.factor = 50
         self.page_limit = 150

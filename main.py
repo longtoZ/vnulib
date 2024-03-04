@@ -1,6 +1,5 @@
 from datetime import datetime
-from src import Parse, Browser, Login, Actions, MultiThreadingDownload, Convert
-
+from src import Parse, Browser, Login, Actions, Download, Convert
 
 def work(urls: list, fast: bool, merge: bool, clean: bool):
     browser = Browser()
@@ -24,17 +23,24 @@ def work(urls: list, fast: bool, merge: bool, clean: bool):
         title = summary["title"]
 
         sections = action.gatherImagesRange(links)
-        MultiThreadingDownload(sections, departure, destination, fast).createTasks()
+        Download(sections, departure, destination, fast).createTasks()
         Convert(departure, destination, title, fast, merge).convert()
 
         if clean:
             action.cleanUp(departure)
 
-
 def main():
     parsed = Parse().parse()
-    work(parsed["url"], parsed["fast"], parsed["merge"], parsed["clean"])
 
+    # Start timer
+    start = datetime.now()
+
+    work(parsed["url"], parsed["fast"], parsed["merge"], parsed["clean"])
+    
+    end = datetime.now()
+    seconds = (end - start).seconds
+    total = lambda seconds: f"{(seconds//60):02d}:{(seconds%60):02d}" 
+    print(f"[+] Total time: {total(seconds)}")
 
 if __name__ == "__main__":
     main()

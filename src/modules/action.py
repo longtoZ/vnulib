@@ -36,7 +36,7 @@ class Actions:
             for i in summary.find_elements(By.CSS_SELECTOR, ".pdf-view.viewonline")
         ]
 
-        print(f"{GREEN}[+] Found {len(links)} sections {RESET}")
+        print(f"[+] Found {len(links)} sections.")
 
         if len(links) == 0:
             print(f"{RED}[!] No sections found. Skipping current url...{RESET}")
