@@ -23,11 +23,14 @@ IF EXIST myenv (
 
 REM Run main.py
 echo "Running main.py..."
-python main.py
+myenv\Scripts\python.exe main.py
 
 REM Deactivate the virtual environment
 echo "Deactivating the virtual environment..."
 call myenv\Scripts\deactivate.bat
 
-echo "Done! Now you can close this window."
-exit /b
+REM Wait for enter key to exit
+set /p key=Done! Press Enter to exit...
+if not "%key%"=="" (
+  exit /b 0
+)

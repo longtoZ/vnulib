@@ -1,6 +1,9 @@
-from .browser import Browser
-from .utils import Utils
-from .login import Login
-from .update_driver import UpdateDriver
-from .actions import Actions
-from .convert import Convert
+from .modules.parse import Parse
+from .modules.browser import Browser
+from .modules.utils import Utils
+from .modules.login import Login
+from .modules.update_driver import UpdateDriver
+from .modules.action import Actions
+from .modules.multithreading_download import MultiThreadingDownload
+from .modules.convert import Convert
+
