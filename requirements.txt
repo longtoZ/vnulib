@@ -6,3 +6,4 @@ selenium==4.17.2
 tqdm==4.66.2
 urllib3==1.26.11
 wget==3.2
+zip-files==0.4.1

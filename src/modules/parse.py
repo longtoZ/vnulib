@@ -1,4 +1,3 @@
-import logging
 from ..CONSTANTS import *
 
 class Parse:

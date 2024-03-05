@@ -66,8 +66,8 @@ class Download:
                 with ThreadPoolExecutor(max_workers=self.workers) as executor:
                     futures = []
 
-                    # If the total pages is greater than 100 and there is only one section, divide the pages into chunks
-                    if (self.total_pages > 100 and len(self.sections) == 1):
+                    # If the total pages is greater than 150 and there is only one section, divide the pages into chunks
+                    if (self.total_pages > self.page_limit and len(self.sections) == 1):
                         data = self.sections[0]
 
                         for order in range(self.workers+1):
